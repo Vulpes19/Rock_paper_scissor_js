@@ -31,19 +31,97 @@ body
     align-items: center;
 }
 
+.bar
+{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 4.5rem;
+    background-color: var(--color5);
+}
 .title
 {
-    position: absolute;
-    top: 0;
-    z-index: 2;
+    font-weight: var(--bolder_font);
+    font-size: 2.5rem;
+    color: var(--color3);
+    padding-left: 33%;
 }
 
 .scores
 {
     display: flex;
     width: 30vw;
+    align-items: center;
     justify-content: space-evenly;
     position: absolute;
-    top: 70px;
-    z-index: 1;
+    top: 20rem;
+    background-color: var(--color5);
+}
+
+.pl_score, .cp_score 
+{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1.5rem;
+}
+
+.options
+{
+    display: flex;
+    width: 50vw;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+}
+
+.rock, .paper, .scissor
+{
+    padding: 1rem;
+    width: 100px;
+    border-radius: 5%;
+    border: none;
+    outline: none;
+    background: var(--color2);
+    cursor: pointer;
+}
+
+.move
+{
+    font-size: 2rem;
+    font-weight: var(--bold_font);
+    color: var(--color2);
+    margin-bottom: 5%;
+}
+
+.refresh 
+{
+    margin-top: 2rem;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    background-color: var(--color5);
+    cursor: pointer;
+}
+
+.result
+{
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 612px)
+{ 
+    .title{
+        text-align: center;
+    }
+    .scores{
+        position: absolute;
+        top: 200px;
+        width: 100vw;
+    }
+    .options{
+        width: 100vw;
+    }
 }
