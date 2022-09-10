@@ -1,43 +1,57 @@
+let player_score = 0;
+let computer_score = 0;
+let player_moves = 3;
+let computer_moves = 3;
+let computer_choice = null;
 
 function ft_game()
 {
-    let player_score = 0;
-    let computer_score = 0;
-    let player_moves = 3;
-    let computer_moves = 3;
     ft_play();
 }
 
+
+const computer_options = ['rock', 'paper', 'scissor'];
 function ft_play()
 {
     const rock_button = document.querySelector('.rock');
     const paper_button = document.querySelector('.paper');
     const scissor_button = document.querySelector('.scissor');
     const player_options = [rock_button, paper_button, scissor_button];
-    const computer_options = ['rock', 'paper', 'scissor'];
-
-    computer_options.forEach(ft_handle_events);
+    console.log(player_moves, computer_moves);
+    if (player_moves == 0 && computer_moves == 0)
+            ft_game_over(player_options, moves_left);
+    player_options.forEach(ft_handle_events);
 }
+
 
 function ft_handle_events(option)
 {
-    option.addEventListener('click', ft_logic());
+    option.addEventListener('click', (event) => {
+        const   moves_left = document.querySelector('.moves');
+        if (player_moves == 0)
+            ft_game_over(event, moves_left);
+        player_moves--;
+        moves_left.innerText = 'Moves Left ${player_moves}';
+        const choice = event.target.innerText;
+        const   computer_choice = computer_options[Math.floor(Math.random() * 3)];
+        ft_if_gamesfinished(choice, computer_choice);
+    });
 }
 
-function ft_logic()
-{
-    const   moves_left = document.querySelector('.moves');
-    player_moves--;
-    moves_left.InnerText = 'Moves Left ${player_moves}'
-    const   choice = math.floor(math.random() * 3);
-    const   computer_choice = computer_options[choice];
-    ft_if_gamesfinished(this.InnerText, computer_choice);
-    computer_moves--;
-    if (player_moves == 0 && computer_moves == 0)
-        ft_game_over(player_options, moves_left);
-    }
+// function ft_logic()
+// {
+//     const   moves_left = document.querySelector('.moves');
+//     player_moves--;
+//     moves_left.InnerText = 'Moves Left ${player_moves}'
+//     const   choice = Math.floor(Math.random() * 3);
+//     const   computer_choice = computer_options[choice];
+//     ft_if_gamesfinished(this.InnerText, computer_choice);
+
+//     if (player_moves == 0 && computer_moves == 0)
+//         ft_game_over(player_options, moves_left);
+// }
     
-    function ft_if_gamesfinished(player, computer)
+function ft_if_gamesfinished(player, computer)
 {
     const result = document.querySelector('.result');
     const pl_score_board = document.querySelector('.pl_score');
@@ -99,7 +113,7 @@ function ft_game_over(player_options, moves_left)
     const result = document.querySelector('.result');
     const reload_button = document.querySelector('.reload');
     
-    player_options.forEach(option => {option.style.display = 'none';});
+    player_options.forEach( (option) => {option.style.display = 'none';});
     move.style.display = 'none';
     if (player_score > computer_score)
     {
