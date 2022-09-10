@@ -1,8 +1,13 @@
+const rock_button = document.querySelector('.rock');
+const paper_button = document.querySelector('.paper');
+const scissor_button = document.querySelector('.scissor');
 let player_score = 0;
 let computer_score = 0;
 let player_moves = 3;
 let computer_moves = 3;
 let computer_choice = null;
+const player_options = [rock_button, paper_button, scissor_button];
+const computer_options = ['rock', 'paper', 'scissor'];
 
 function ft_game()
 {
@@ -10,13 +15,8 @@ function ft_game()
 }
 
 
-const computer_options = ['rock', 'paper', 'scissor'];
 function ft_play()
 {
-    const rock_button = document.querySelector('.rock');
-    const paper_button = document.querySelector('.paper');
-    const scissor_button = document.querySelector('.scissor');
-    const player_options = [rock_button, paper_button, scissor_button];
     console.log(player_moves, computer_moves);
     if (player_moves == 0 && computer_moves == 0)
             ft_game_over(player_options, moves_left);
@@ -29,8 +29,9 @@ function ft_handle_events(option)
     option.addEventListener('click', (event) => {
         const   moves_left = document.querySelector('.moves');
         if (player_moves == 0)
-            ft_game_over(event, moves_left);
+            ft_game_over(player_options, moves_left);
         player_moves--;
+        computer_moves--;
         moves_left.innerText = 'Moves Left ${player_moves}';
         const choice = event.target.innerText;
         const   computer_choice = computer_options[Math.floor(Math.random() * 3)];
@@ -111,7 +112,7 @@ function ft_game_over(player_options, moves_left)
 {
     const move = document.querySelector('.move');
     const result = document.querySelector('.result');
-    const reload_button = document.querySelector('.reload');
+    const reload_button = document.querySelector('.refresh');
     
     player_options.forEach( (option) => {option.style.display = 'none';});
     move.style.display = 'none';
